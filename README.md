@@ -1,152 +1,354 @@
-# TaskFlow — Smart Full-Stack Task Manager
+# 🚀 TaskFlow – Smart Full-Stack Task Manager
 
-A polished dark-theme task management workspace built with React, Vite and JavaScript. The repository includes two compatible modes:
+A modern, professional task management application designed to help users organize tasks, track productivity, manage deadlines, and improve daily workflow.
 
-1. **GitHub Pages standalone mode** — works independently with browser LocalStorage. No backend, database or API hosting is required.
-2. **Optional Express API mode** — a locally runnable REST API with JSON-file persistence, bcrypt password hashing and revocable JWT sessions.
+Built as **Task 2 – Final Project (Weeks 3–4)** for a Full Stack Web Development Internship.
 
-> GitHub Pages only hosts static files. It does **not** run the Express server. Shared server-side data across devices requires deploying the API separately and configuring a frontend API integration. The included Pages build intentionally runs in standalone LocalStorage mode.
+## 🌟 Project Overview
 
-## Features
+TaskFlow is a responsive SaaS-style task management platform featuring a premium dark dashboard, task organization, productivity analytics, and authentication.
 
-- Registration, login, persistent demo session and logout
-- Per-account task storage in LocalStorage
-- Create, read, edit, complete and delete tasks
-- Search, category/status/priority filters and sorting
-- Dashboard metrics, completion ring, recent activity and upcoming deadlines
-- Kanban board with drag-and-drop status changes
-- Monthly deadline calendar
-- Productivity analytics and category breakdown
-- JSON backup export and import
-- Responsive desktop, tablet and mobile layout
-- Toast feedback, validation and delete confirmation
-- Optional Express REST API with JSON persistence, validation, CORS, Helmet, rate limiting and centralized errors
+The application supports two operating modes:
 
-## Tech stack
+1. **Standalone Mode:** Runs independently on GitHub Pages using browser LocalStorage.
+2. **Backend Mode:** Uses a Node.js and Express REST API with JSON-file persistence.
 
-**Frontend:** React 18, Vite 6, React Router, Lucide React, CSS  
-**Backend:** Node.js, Express, bcryptjs, JSON Web Tokens, JSON-file persistence  
-**Deployment:** GitHub Actions + GitHub Pages
+No external database is required.
 
-## Run locally — frontend
+## ✨ Features
 
-Requirements: Node.js 20+ and npm.
+### 🔐 Authentication
+- User registration and login.
+- Password visibility toggle.
+- Form validation.
+- Persistent login sessions.
+- User-specific task management.
+- Logout functionality.
+
+### 📊 Dashboard
+- Total tasks overview.
+- Completed tasks.
+- Pending tasks.
+- In-progress tasks.
+- Overdue tasks.
+- Urgent task tracking.
+- Completion percentage.
+- Productivity analytics.
+- Upcoming deadlines.
+
+### 📝 Task Management
+- Create new tasks.
+- View task details.
+- Edit existing tasks.
+- Delete tasks.
+- Update task status.
+- Set task priorities.
+- Assign categories.
+- Manage due dates.
+
+### 🔍 Organization
+- Search tasks.
+- Filter by category.
+- Filter by status.
+- Filter by priority.
+- Sort tasks.
+- Track overdue deadlines.
+- View completed tasks.
+
+### 📌 Advanced Features
+- Kanban board.
+- Drag-and-drop task management.
+- Calendar deadline view.
+- Productivity tracking.
+- JSON backup export.
+- JSON backup import.
+- Toast notifications.
+- Responsive navigation.
+- Confirmation dialogs.
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js
+- Vite
+- JavaScript
+- CSS3
+- Lucide React
+- Browser LocalStorage
+
+### Backend
+- Node.js
+- Express.js
+- REST API
+- JSON-file persistence
+- JWT Authentication
+- Password Hashing
+- Middleware
+- Environment Variables
+
+### Deployment
+- GitHub
+- GitHub Actions
+- GitHub Pages
+
+## 🎨 UI Design
+
+TaskFlow features a premium dark SaaS interface with:
+
+- Modern dashboard layout.
+- Dark navy background.
+- Electric violet and blue accents.
+- Professional cards.
+- Responsive components.
+- Smooth transitions.
+- Clean typography.
+
+## 📂 Project Structure
+
+```text
+task-manager-fullstack/
+│
+├── public/
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── layouts/
+│   ├── hooks/
+│   ├── services/
+│   ├── utils/
+│   ├── styles/
+│   ├── assets/
+│   └── App.jsx
+│
+├── backend/
+│   ├── routes/
+│   ├── middleware/
+│   ├── controllers/
+│   ├── services/
+│   ├── data/
+│   └── server.js
+│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+├── index.html
+├── package.json
+├── vite.config.js
+├── .gitignore
+├── README.md
+└── .env.example
+```
+
+## 💻 Installation and Setup
+
+### Prerequisites
+
+Install:
+
+- Node.js
+- npm
+- Visual Studio Code
+- Git
+
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/USERNAME/task-manager-fullstack.git
+```
+
+### 2. Open Project
+
+```bash
 cd task-manager-fullstack
+```
+
+### 3. Install Frontend Dependencies
+
+```bash
 npm install
+```
+
+### 4. Start Frontend
+
+```bash
 npm run dev
 ```
 
-Open the local Vite URL shown in the terminal (normally `http://localhost:5173`). Create an account to start. A small sample workspace is seeded on first registration.
+Open:
 
-Production build check:
-
-```bash
-npm run build
-npm run preview
+```text
+http://localhost:5173
 ```
 
-## Run the optional backend
+## ⚙️ Backend Setup
 
-Open a second terminal from the project root:
+Open another terminal.
 
 ```bash
 cd backend
 npm install
 ```
 
-Copy `.env.example` to `.env` (PowerShell):
+Create the environment file:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Edit `backend/.env` and set a unique long `JWT_SECRET`, then run:
+Configure your environment variables, including a strong JWT secret.
+
+Start the backend:
 
 ```bash
 npm run dev
 ```
 
-The API starts at `http://localhost:5000`. Verify it at `http://localhost:5000/api/health`.
-
-Full endpoint documentation and example payloads: [`backend/README.md`](backend/README.md).
-
-The provided React app is intentionally configured to use LocalStorage, not this optional API. This keeps the GitHub Pages application independent of a separately hosted backend.
-
-## GitHub Pages deployment
-
-1. Create a GitHub repository named **`task-manager-fullstack`**.
-2. Upload/push the project contents to the repository's `main` branch.
-3. In GitHub, open **Settings → Pages** and set the source to **GitHub Actions**.
-4. Open the **Actions** tab and wait for “Deploy TaskFlow to GitHub Pages” to finish.
-5. Visit `https://USERNAME.github.io/task-manager-fullstack/`.
-
-The workflow builds the Vite frontend and deploys `dist`. `vite.config.js` sets `/task-manager-fullstack/` as the production base path in GitHub Actions. If you rename the repository, update that base path too.
-
-## LocalStorage, privacy and security notes
-
-- Browser-mode accounts and tasks are stored in the browser's LocalStorage. Data is specific to that browser profile and device; it does not synchronize between devices.
-- This is a learning/demo authentication flow, **not secure production authentication**. The standalone demo stores credentials in browser storage and should not be used for real or sensitive accounts.
-- Clearing browser site data can erase the workspace. Use **Export JSON** regularly to keep a backup.
-- The optional backend hashes passwords and uses signed, expiring, revocable bearer tokens. JSON-file persistence is appropriate for a local demonstration, not a multi-instance production service.
-- Never commit `.env`, secrets, or real user data.
-
-## Project structure
+Backend URL:
 
 ```text
-task-manager-fullstack/
-├── .github/workflows/deploy.yml
-├── backend/
-│   ├── data/.gitkeep
-│   ├── middleware/{auth.js,errors.js}
-│   ├── routes/{auth.js,tasks.js}
-│   ├── services/store.js
-│   ├── server.js
-│   ├── package.json
-│   ├── .env.example
-│   └── README.md
-├── public/
-├── src/
-│   ├── services/storage.js
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── styles.css
-├── .env.example
-├── .gitignore
-├── index.html
-├── package.json
-└── vite.config.js
+http://localhost:5000
 ```
 
-## Useful commands
+Health check:
 
-| Command | Purpose |
-|---|---|
-| `npm install` | Install frontend dependencies |
-| `npm run dev` | Start Vite development server |
-| `npm run build` | Create production frontend in `dist/` |
-| `npm run preview` | Preview production build locally |
-| `cd backend && npm install` | Install API dependencies |
-| `cd backend && npm run dev` | Start local Express API |
+```text
+http://localhost:5000/api/health
+```
 
-## Internship submission checklist
+## 🌐 GitHub Pages Deployment
 
-- [x] React + Vite frontend
-- [x] Standalone GitHub Pages mode
-- [x] LocalStorage registration, login and task persistence
-- [x] Task CRUD, filters and search
-- [x] Dashboard, Kanban, calendar and analytics
-- [x] JSON import/export
-- [x] Express REST API source
-- [x] JSON-file backend persistence
-- [x] Password hashing and JWT sessions
-- [x] API documentation and environment examples
-- [x] GitHub Actions Pages workflow
-- [ ] Push to your own GitHub repository and confirm the Actions deployment
-- [ ] Run local installation/build/API checks in your environment
+TaskFlow supports automatic deployment through GitHub Actions.
+
+### Deployment Steps
+
+1. Create a GitHub repository named `task-manager-fullstack`.
+2. Upload the complete project.
+3. Push the code to the `main` branch.
+4. Open repository Settings.
+5. Select Pages.
+6. Choose GitHub Actions as the deployment source.
+7. Open the Actions tab.
+8. Wait for the deployment workflow to complete.
+
+### Live Website
+
+```text
+https://USERNAME.github.io/task-manager-fullstack/
+```
+
+Replace `USERNAME` with your GitHub username.
+
+## 💾 Data Storage
+
+### Standalone Mode
+
+The GitHub Pages application uses browser LocalStorage.
+
+Features:
+- User-specific tasks.
+- Persistent browser data.
+- Saved login sessions.
+- JSON backup and restore.
+
+**Important:** LocalStorage is device- and browser-specific. It is not secure production authentication and does not synchronize data between users or devices.
+
+### Backend Mode
+
+The Express backend uses local JSON files for persistence.
+
+It provides:
+- Registration.
+- Login.
+- Logout.
+- Authentication middleware.
+- Task CRUD endpoints.
+- Input validation.
+- Centralized error handling.
+
+The backend must run separately. GitHub Pages does not host Node.js applications.
+
+For shared server-side persistence, deploy the API independently and configure the frontend to use its API URL.
+
+## 📡 REST API Documentation
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/health` | Health check |
+| POST | `/api/auth/register` | Register user |
+| POST | `/api/auth/login` | Login user |
+| POST | `/api/auth/logout` | Logout user |
+| GET | `/api/tasks` | Get user tasks |
+| POST | `/api/tasks` | Create task |
+| GET | `/api/tasks/:id` | Get task details |
+| PATCH | `/api/tasks/:id` | Update task |
+| DELETE | `/api/tasks/:id` | Delete task |
+
+Protected endpoints require valid authentication.
+
+## 📋 Task Categories
+
+- Work
+- Personal
+- Study
+- Health
+- Other
+
+## 🚦 Task Priorities
+
+- Low
+- Medium
+- High
+- Urgent
+
+## 📌 Task Status
+
+- To Do
+- In Progress
+- Completed
+
+## 🔒 Security Notes
+
+- Password hashing is implemented in backend mode.
+- Authentication uses token-based handling.
+- Environment secrets should never be committed.
+- LocalStorage authentication is intended for demonstration purposes.
+- Production deployment requires HTTPS, secure token handling, and an independently hosted backend.
+
+## 🎯 Internship Project Objectives
+
+This project demonstrates practical knowledge of:
+
+- React component architecture.
+- Frontend state management.
+- Responsive UI development.
+- REST API development.
+- Node.js and Express.
+- Authentication.
+- CRUD operations.
+- LocalStorage.
+- JSON data persistence.
+- GitHub Actions.
+- GitHub Pages deployment.
+- Full-stack application architecture.
+
+## 👩‍💻 Developer
+
+**Sawaira Ijaz**
+
+Full Stack Web Developer | React.js | JavaScript | Node.js
+
+GitHub: https://github.com/sa23515193-hash
+
+LinkedIn: https://www.linkedin.com/in/sawaira-ijaz/
+
+Portfolio: https://sa23515193-hash.github.io/MY-CV-portfolio/
+
+## 📄 License
+
+This project is developed for educational and internship purposes.
 
 ---
 
-Built as an internship learning project. TaskFlow is a demonstration application, not a production security or data-storage service.
+**TaskFlow – Organize Smarter. Work Better. Achieve More.**
